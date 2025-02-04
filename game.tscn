@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cs5nnqf58p254"]
+
+[ext_resource type="Texture2D" uid="uid://cpgnfq0kxfdru" path="res://background.jpg" id="1_41ed3"]
+[ext_resource type="PackedScene" uid="uid://blkf3110osdnv" path="res://ship.tscn" id="2_bxhdt"]
+
+[node name="Game" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -386.0
+offset_top = -209.0
+offset_right = 1534.0
+offset_bottom = 871.0
+texture = ExtResource("1_41ed3")
+stretch_mode = 1
+
+[node name="ShipG" parent="." instance=ExtResource("2_bxhdt")]
