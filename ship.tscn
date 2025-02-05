@@ -1,14 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://blkf3110osdnv"]
+[gd_scene load_steps=4 format=3 uid="uid://blkf3110osdnv"]
 
 [ext_resource type="Texture2D" uid="uid://blvsr5iu68l8x" path="res://ship_G.png" id="1_ui8dp"]
 [ext_resource type="Script" path="res://ship.gd" id="2_ioq48"]
 
-[node name="ShipG" type="Sprite2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_p7fsu"]
+radius = 22.8035
+
+[node name="ShipG" type="Area2D"]
 position = Vector2(240, 147)
-texture = ExtResource("1_ui8dp")
 script = ExtResource("2_ioq48")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ui8dp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_p7fsu")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
