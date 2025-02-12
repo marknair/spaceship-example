@@ -1,14 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://cs5nnqf58p254"]
+[gd_scene load_steps=5 format=3 uid="uid://cs5nnqf58p254"]
 
 [ext_resource type="PackedScene" uid="uid://blkf3110osdnv" path="res://ship.tscn" id="2_bxhdt"]
 [ext_resource type="PackedScene" uid="uid://cyhh1m7dlastl" path="res://health_pack.tscn" id="2_i8srd"]
+[ext_resource type="PackedScene" uid="uid://2tjjig10cwe4" path="res://random_item_placer.tscn" id="2_vreph"]
+[ext_resource type="PackedScene" uid="uid://j0qbg3x5kq0q" path="res://gem.tscn" id="3_oxdii"]
 
 [node name="Game" type="Node2D"]
 
 [node name="ShipG" parent="." instance=ExtResource("2_bxhdt")]
 
-[node name="HealthPack" parent="." instance=ExtResource("2_i8srd")]
-position = Vector2(232, 341)
+[node name="RandomItemPlacer" parent="." instance=ExtResource("2_vreph")]
 
-[node name="HealthPack2" parent="." instance=ExtResource("2_i8srd")]
-position = Vector2(664, 161)
+[node name="Gem" parent="." instance=ExtResource("3_oxdii")]
+visible = false
+position = Vector2(155, 323)
+
+[node name="HealthPack" parent="." instance=ExtResource("2_i8srd")]
+visible = false
+position = Vector2(185, 340)

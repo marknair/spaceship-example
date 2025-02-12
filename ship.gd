@@ -1,10 +1,16 @@
 extends Area2D
 
+var gem_count = 0
+var health = 10
 var normal_speed = 600.0
 var max_speed = normal_speed
 var boost_speed = 1500.0
 var velocity = Vector2.ZERO
 var steering_factor = 10
+
+func _ready():
+	area_entered.connect(_on_area_entered)
+	set_health(50)
 
 func _process(delta: float) -> void:
 	var direction = Vector2.ZERO
@@ -23,8 +29,30 @@ func _process(delta: float) -> void:
 	velocity += steering_vector * steering_factor * delta
 	position += velocity * delta
 	
-	if direction.length() > 0.0:
-		rotation = velocity.angle() + PI/2
+	if velocity.length() > 0.0:
+		#rotation = velocity.angle() + PI/2
+		$Sprite2D.rotation = velocity.angle() + PI/2
+		
+	var viewport_size = get_viewport_rect().size
+	
+var value = -2
+var wrapped = wrapf(value, 0, 10)
+print(wrapped)
+
 
 func _on_timer_timeout() -> void:
 	max_speed = normal_speed
+	
+func set_health(new_health: int) -> void:
+	health = new_health
+	get_node("UI/HealthBar").value = health
+
+func _on_area_entered(area_that_entered: Area2D) -> void:
+	if area_that_entered.is_in_group("gem"):
+		set_gem_count(gem_count + 1)
+	elif area_that_entered.is_in_group("healing_item"):
+		set_health(health + 25)
+	
+func set_gem_count(new_gem_count: int) -> void:
+	gem_count = new_gem_count
+	get_node("UI/GemCount").text = "x" + str(gem_count)
