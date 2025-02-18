@@ -35,10 +35,8 @@ func _process(delta: float) -> void:
 		
 	var viewport_size = get_viewport_rect().size
 	
-var value = -2
-var wrapped = wrapf(value, 0, 10)
-print(wrapped)
-
+	position.x = wrapf(position.x, 0, viewport_size.x)
+	position.y = wrapf(position.y, 0, viewport_size.y)
 
 func _on_timer_timeout() -> void:
 	max_speed = normal_speed
